@@ -1,0 +1,21 @@
+#include <Servo.h>
+
+Servo lock;
+
+void setup() {
+  lock.attach(9);
+  lock.write(0);
+  Serial.begin(9600);
+}
+
+void loop() {
+  if (Serial.available()) {
+    char c = Serial.read();
+
+    if (c == '1') {
+      lock.write(90);
+      delay(5000);
+      lock.write(0);
+    }
+  }
+}
